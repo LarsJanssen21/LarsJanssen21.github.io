@@ -1,7 +1,7 @@
 ## Indirect lighting through irradiance probes
 
 <p align="center">
-     <img src="/_posts/media/ExposureCorrectedScene.png" alt="Exposure corrected final result" width="100%"><br>
+     <img src="/Images/ExposureCorrectedScene.png" alt="Exposure corrected final result" width="100%"><br>
     Exposure corrected final result (simulating shadow and highlight exposure correction through masking in photoshop <a href="#photoshop-blending">see for more info</a>)
 </p>
 
