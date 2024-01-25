@@ -47,7 +47,7 @@ Irradiance data can roughly be explained as the incoming light from all possible
 
 Since calculating irradiance means integrating the light coming from **an infinite possibility of directions** over a hemisphere it is infeasible to expect any answer let alone in real-time on consumer hardware. This means we have to approximate the irradiance using something like a **Riemann sum** this process of discretization generally returns results that are more then good enough for real-time purposes, this yield us with the following equation we have to compute:
 
-$$ L_o(p, \phi_o, \theta_o) = k_d {c \over \pi} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{{1\over2}\pi} L_i(p, \phi_i, \theta_i) \cos(\theta) \sin(theta) d\phi d\theta$$
+$$ L_o(p, \phi_o, \theta_o) = k_d {c \over \pi} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\frac{1}{2}\pi} L_i(p, \phi_i, \theta_i) \cos(\theta) \sin(theta) d\phi d\theta$$
 
 <p align="center">
 	In polar coordinates<a href="#source5">[5]</a>
