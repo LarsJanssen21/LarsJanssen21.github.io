@@ -27,7 +27,7 @@
 - [Sources](#sources)
 
 ## Introduction
-I am currently enrolled at Breda Universit of Applied Science as a 2nd year programming student, this blog post was written as part of my grading for the given feature I had to implement. I have written this post to condense the research and implementation into a single readable format. As this post expands beyond what I will be graded for I hope you will be able to learn and gain some insights from this article.
+I am currently enrolled at Breda University of Applied Sciences as a 2nd year programming student, this blog post was written as part of my grading for the given feature I had to implement. I have written this post to condense the research and implementation into a single readable format. As this post expands beyond what I will be graded for I hope you will be able to learn and gain some insights from this article.
 
 #### Why indirect illumination?
 
@@ -89,7 +89,7 @@ The pipeline for drawing IBL constituted of these resources:
 
 If you want to read more on the steps that go into IBL and it's implementation I recommend these resources:
 
-[LearnOpenGL](https://learnopengl.com/PBR/Theory)<br>
+[LearnOpenGL](https://learnopengl.com/PBR/Theory)
 [Google's Filament](https://google.github.io/filament/Filament.md.html)
 
 ### High-level overview
