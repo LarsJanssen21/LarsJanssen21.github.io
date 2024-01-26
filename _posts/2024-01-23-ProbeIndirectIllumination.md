@@ -31,7 +31,7 @@ I am currently enrolled at Breda University of Applied Sciences as a 2nd year pr
 
 #### Why indirect illumination?
 
-This school project of mine needed me to learn the necessary skills for a chosen industry position. I chose the position of graphics programmer at Naughty Dog and oriented my project about approximating indirect illumination. As I learned from Naughty Dog at Siggraph 2020[[1]](#source1) they use a probe based lighting scheme for indirect illumination so this is what I based my implementation on.
+This school project of mine needed me to learn the necessary skills for a chosen industry position. I chose the position of graphics programmer at Naughty Dog and oriented my project around approximating indirect illumination. As I learned from Naughty Dog at Siggraph 2020[[1]](#source1) they use a probe based lighting scheme for indirect illumination so this is what I based my implementation on.
 
 
 
@@ -39,6 +39,22 @@ This school project of mine needed me to learn the necessary skills for a chosen
 
 ### Abstract
 The problem we're solving here is approximating indirect illumination in a way that better simulates light bouncing through the scene instead of a flat ambient term. Tons of research has already been poured into this problem. I have assembled an implementation based on several different research papers and implementations (see [sources](#sources))
+
+
+<script src="/js/imageSlider.js"></script>
+
+<div class="img-comp-container">
+  <div class="img-comp-img">
+    <img src="/Images/Flat ambient term.png" width="100%">
+  </div>
+  <div class="img-comp-img img-comp-overlay">
+    <img src="/Images/Indirect Illumination term.png" width="100%">
+  </div>
+</div>
+
+<script>
+	initComparisons();
+</script>
 
 **[TODO insert picture comparing flat ambient term to indirect illumination]**
 
@@ -66,7 +82,7 @@ _**[Insert section talking about spherical harmonics]**_
 ### Populating probes in a scene
 
 Ideally we would calculate the irradiance for a given point and it's normal in the scene but since solving the equation in <a href="#solving-the-irradiance-question">solving the irradiance question</a> in a real-time application is infeasible we have to rely on an approximation. In this implementation we used something called a probe (diffuse probe, irradiance probe, IBL probe, e.t.c.), they capture the irradiance at a given point in the scene.<br>
- uckily diffuse irradiance data depening on the density of placements doesn't vary that much spatially so generally these approximations return results that are plausible enough.
+Luckily diffuse irradiance data depening on the density of placements doesn't vary that much spatially so generally these approximations return results that are plausible enough.
 
 Some options to consider when placing probes in the scene
 - Placing on a regular grid
@@ -79,18 +95,7 @@ When placing these probes keep in mind how they will be interpolated, by using t
 
 ## Implementation
 
-The implemenation of this requires some rewriting in pseudo code as it was fully created on a certain next gen hardware platform from a japanese company😉. With this in mind I hope there is still ssomething to take away from reading this
-
-The base of this project can be found in the codebase as a continuation from the previous project I had to complete (A PBR renderer, lit through IBL). This meant the entire pipeline for lighting through image based data was already in place. I will briefly go over this process.
-
-The pipeline for drawing IBL constituted of these resources:
-
-**[TODO show resources]**
-
-If you want to read more on the steps that go into IBL and it's implementation I recommend these resources:
-
-[LearnOpenGL](https://learnopengl.com/PBR/Theory)
-[Google's Filament](https://google.github.io/filament/Filament.md.html)
+The implemenation of this requires some rewriting in pseudo code as it was fully created on a certain next gen hardware platform from a japanese company😉. With this in mind I hope there is still something to take away from reading this.
 
 ### High-level overview
 
@@ -102,7 +107,7 @@ The high level overview of the implementation goes as follows:
 - When drawing:
   - Get the world space postion and the normal for given pixel/fragment
   - With a lookup function find the eight corners of the grid cell overlapping the position
-  - trilinearly interpolate between the eight probes, discarding the probes that are behind the 	surface normal
+  - trilinearly interpolate between the eight probes, discarding the probes that are behind the surface normal
   - Add this to the final radiance (replacing the 'ambient' term)
 
 ### Reducing the irradiance memory print
@@ -127,7 +132,7 @@ struct Probe
 }
 ```
 
-For any given normal we can generate the coefficients for each order and band in the spherical harmonics using the following function:
+For any given normal we can generate the coefficients for each order and band using the following function:
 
 ```C++
 SH9 GenSHCoefficients(float3 normal)
@@ -152,11 +157,11 @@ SH9 GenSHCoefficients(float3 normal)
 
 Where SH9 is a struct containing 9 scalar coefficients.
 
-The encoding of irradiance signals into these harmonics will be displayed in [From position to irradiance probe](#from-position-to-irradiance-probe)
+The encoding of irradiance signals into these harmonics will be displayed in the section [From position to irradiance probe](#from-position-to-irradiance-probe).
 
 ### Generating cubemaps
 
-I assume the reader is knowledgeable in the basic of graphics programming and knows how to rasterizer the scene to a cubemap, ([Basic cubemap drawing example for the ambitious novices](https://www.learnopengl.com/Advanced-Lighting/Shadows/Point-Shadows)). 
+I assume the reader is knowledgeable in the basic of graphics programming and knows how to rasterizer the scene to a cubemap, ([Basic cubemap drawing example for the ambitious novices](https://www.learnopengl.com/Advanced-Lighting/Shadows/Point-Shadows)).
 
 ### From position to irradiance probe
 
@@ -243,7 +248,9 @@ The implementation currently only supports diffuse irradiance data. A nice addit
 
 To be totally transparent about the cover image of this article. The given time for the project did not allow me to implement localized tone mapping. To be able to showcase an image with visible details in both the highlight and shadows I had to simulate the tone mapping through photoshop. All images used are showed below:
 
-**[TODO insert images showing process of exposure correction]**
+|High exposure	|	Low exposure	|
+|---|---|
+|![](/Images/HighExposure.png)	| ![](/Images/LowExposure.png)	|
 
 ## Sources
 [1] <a id="source1" /> [Naughty dog at siggraph 2020](https://www.naughtydog.com/blog/naughty_dog_at_siggraph_2020) <br>
@@ -251,3 +258,5 @@ To be totally transparent about the cover image of this article. The given time 
 [3] <a id="source3" /> [Real-time global illumination using precomputed light field probes](https://research.nvidia.com/publication/2017-02_real-time-global-illumination-using-precomputed-light-field-probes) <br>
 [4] <a id="source4" /> [Frostbite stochastic screen space recflections](https://www.ea.com/frostbite/news/stochastic-screen-space-reflections)<br>
 [5] <a id="source5"> [LearnOpengL diffuse irradiance](https://learnopengl.com/PBR/IBL/Diffuse-irradiance)
+
+<img src="/Images/Logo BUas_RGB.png" width="40%" />
