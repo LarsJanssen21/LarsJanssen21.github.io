@@ -41,20 +41,12 @@ This school project of mine needed me to learn the necessary skills for a chosen
 The problem we're solving here is approximating indirect illumination in a way that better simulates light bouncing through the scene instead of a flat ambient term. Tons of research has already been poured into this problem. I have assembled an implementation based on several different research papers and implementations (see [sources](#sources))
 
 
-<script src="/js/imageSlider.js"></script>
-
-<div class="img-comp-container">
-  <div class="img-comp-img">
-    <img src="/Images/Flat ambient term.png" width="100%">
-  </div>
-  <div class="img-comp-img img-comp-overlay">
-    <img src="/Images/Indirect Illumination term.png" width="100%">
-  </div>
+<div class="juxtapose">
+    <img src="/Images/Flat ambient term.png" />
+    <img src="/Images/Indirect Illumination term.png" />
 </div>
-
-<script>
-	initComparisons();
-</script>
+<script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
+<link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
 
 **[TODO insert picture comparing flat ambient term to indirect illumination]**
 
