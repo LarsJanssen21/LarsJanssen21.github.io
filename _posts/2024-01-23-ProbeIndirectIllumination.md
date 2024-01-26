@@ -40,15 +40,15 @@ This school project of mine needed me to learn the necessary skills for a chosen
 ### Abstract
 The problem we're solving here is approximating indirect illumination in a way that better simulates light bouncing through the scene instead of a flat ambient term. Tons of research has already been poured into this problem. I have assembled an implementation based on several different research papers and implementations (see [sources](#sources))
 
-
-<div class="juxtapose">
-    <img src="/Images/Flat ambient term.png" />
-    <img src="/Images/Indirect Illumination term.png" />
+<div class="juxtapose" align="center">
+    <img src="/Images/Flat ambient term.png" width="80%"/>
+    <img src="/Images/Indirect Illumination term.png" width="80%">
+	<br>
+	Comparison between flat ambient term and probe based indirect illumination.
 </div>
 <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
 <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
 
-**[TODO insert picture comparing flat ambient term to indirect illumination]**
 
 ### Solving the irradiance question
 Irradiance data can roughly be explained as the incoming light from all possible directions, so how de we generally solve this unknown?
