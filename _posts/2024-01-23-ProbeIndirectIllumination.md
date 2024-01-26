@@ -53,7 +53,7 @@ The problem we're solving here is approximating indirect illumination in a way t
 ### Solving the irradiance question
 Irradiance data can roughly be explained as the incoming light from all possible directions, so how de we generally solve this unknown?
 
-Since calculating irradiance means integrating the light coming from **an infinite possibility of directions** over a hemisphere it is infeasible to expect any answer let alone in real-time on consumer hardware. This means we have to approximate the irradiance using something like a **Riemann sum** this process of discretization generally returns results that are more then good enough for real-time purposes, this yield us with the following equation we have to compute:
+Since calculating irradiance means integrating the light coming from **an infinite possibility of directions** over a hemisphere it is infeasible to expect any answer, let alone in real-time on consumer hardware. This means we have to approximate the irradiance using something like a **Riemann sum**, this process of discretization generally returns results that are more than good enough for real-time purposes, this yield us with the following equation we have to compute:
 
 $$ L_o(p, \phi_o, \theta_o) = k_d {c \over \pi} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\frac{1}{2}\pi} L_i(p, \phi_i, \theta_i) \cos(\theta) \sin(theta) d\phi d\theta$$
 
@@ -78,7 +78,7 @@ We can then use this equation to compute the irradiance and store this in severa
 
 ### Populating probes in a scene
 
-Ideally we would calculate the irradiance for a given point and it's normal in the scene but since solving the equation in <a href="#solving-the-irradiance-question">Solving the irradiance question</a> in a real-time application is infeasible we have to rely on an approximation. In my implementation I use something called a probe (diffuse probe, irradiance probe, IBL probe, light probe, e.t.c.), that captures the irradiance at a given point in the scene.<br>
+Ideally, we would calculate the irradiance for a given point and it's normal in the scene, but, since solving the equation in <a href="#solving-the-irradiance-question">Solving the irradiance question</a> in a real-time application is infeasible we have to rely on an approximation. In my implementation I use something called a probe (diffuse probe, irradiance probe, IBL probe, light probe, e.t.c.), that captures the irradiance at a given point in the scene.<br>
 Luckily diffuse irradiance data depening on the density of placements doesn't vary that much spatially so generally these approximations return results that are plausible enough.
 
 Some options to consider when placing probes in the scene
