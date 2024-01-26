@@ -18,7 +18,6 @@
 - [Implementation](#implementation)
 	- [High-level overview](#high-level-overview)
 	- [Reducing the irradiance memory print](#reducing-the-irradiance-memory-print)
-	- [Generating cubemaps](#generating-cubemaps)
 	- [From position to irradiance probe](#from-position-to-irradiance-probe)
 	- [Indexing into your grid](#indexing-into-your-grid)
 	- [Rendering](#rendering)
@@ -72,7 +71,7 @@ Where **L<sub>i</sub>** is the incoming light and **L<sub>o</sub>** the irradian
 
 We can then use this equation to compute the irradiance and store this in several ways, Like cubemaps in the classic IBL implementation or spherical harmonics for a more efficient use of memory
 
-<p align="center" width=80%">
+<p align="center" width="80%">
 	<img src="/Images/IBL_DiffuseIrradiance.png"><br>
 	<i>Storing of irradiance values in a cubemap, Each pixel represents the irradiance for a given normal</i>
 </p>
@@ -180,10 +179,6 @@ float3 CalcSHIrradiance(float3 normal, SH9Irradiance irrCoeff)
 
 The encoding of irradiance signals into these harmonics will be displayed in the section [From position to irradiance probe](#from-position-to-irradiance-probe).
 
-### Generating cubemaps
-
-I assume the reader is knowledgeable in the basic of graphics programming and knows how to rasterizer the scene to a cubemap, ([Basic cubemap drawing example for the ambitious novices](https://www.learnopengl.com/Advanced-Lighting/Shadows/Point-Shadows)).
-
 ### From position to irradiance probe
 
 The pipeline for baking probes consist of a two step process:
@@ -278,9 +273,9 @@ To be totally transparent about the cover image of this article. The given time 
 |![](/Images/HighExposure.png)	| ![](/Images/LowExposure.png)	|
 
 ## Sources
-[1] <a id="source1" /> [Naughty dog at siggraph 2020](https://www.naughtydog.com/blog/naughty_dog_at_siggraph_2020) 
+[1] <a id="source1" /> [Naughty Dog at siggraph 2020](https://www.naughtydog.com/blog/naughty_dog_at_siggraph_2020) 
 <br>
-[2] <a id="source2" /> [Nvidia rtxgi](https://developer.nvidia.com/rtx/ray-tracing/rtxgi) 
+[2] <a id="source2" /> [Nvidia RTXGI](https://developer.nvidia.com/rtx/ray-tracing/rtxgi) 
 <br>
 [3] <a id="source3" /> [Morgan McGuire, Mike Mara, Derek Nowrouzezahrai, and David Luebke. 2017. Real-time global illumination using precomputed light field probes. In Proceedings of the 21st ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games (I3D '17). Association for Computing Machinery, New York, NY, USA, Article 2, 1–11. https://doi.org/10.1145/3023368.3023378](https://doi.org/10.1145/3023368.3023378) 
 <br>
