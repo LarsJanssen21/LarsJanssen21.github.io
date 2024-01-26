@@ -2,7 +2,7 @@
 
 <p align="center">
      <img src="/Images/ExposureCorrectedScene.png" alt="Exposure corrected final result" width="100%"><br>
-    Exposure corrected final result (simulating shadow and highlight exposure correction through masking in photoshop <a href="#photoshop-blending">see for more info</a>)
+    <i>Exposure corrected final result (simulating shadow and highlight exposure correction through masking in photoshop <a href="#photoshop-blending">see for more info</a>)</i>
 </p>
 
 ## Table of contents
@@ -40,14 +40,14 @@ This school project of mine needed me to learn the necessary skills for a chosen
 ### Abstract
 The problem we're solving here is approximating indirect illumination in a way that better simulates light bouncing through the scene instead of a flat ambient term. Tons of research has already been poured into this problem. I have assembled an implementation based on several different research papers and implementations (see [sources](#sources))
 
-<div class="juxtapose">
+<div class="juxtapose" align="center">
 	<img src="/Images/Flat ambient term.png" width="80%"/>
 	<img src="/Images/Indirect Illumination term.png" width="80%">
 </div>
 <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
 <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
 <p align="center">
-Comparison between flat ambient term and probe based indirect illumination.
+<i>Comparison between flat ambient term and probe based indirect illumination</i>
 </p>
 
 
@@ -70,11 +70,16 @@ $$ L_o(p, \phi_o, \theta_o) = k_d {c\pi \over n1n2} \sum_{\phi = 0}^{n1} \sum_{\
 
 Where **L<sub>i</sub>** is the incoming light and **L<sub>o</sub>** the irradiance
 
-_**[Insert section talking about spherical harmonics]**_
+We can then use this equation to compute the irradiance and store this in several ways, Like cubemaps in the classic IBL implementation or spherical harmonics for a more efficient use of memory
+
+<p align="center" width=80%">
+	<img src="/Images/IBL_DiffuseIrradiance.png"><br>
+	<i>Storing of irradiance values in a cubemap, Each pixel represents the irradiance for a given normal</i>
+</p>
 
 ### Populating probes in a scene
 
-Ideally we would calculate the irradiance for a given point and it's normal in the scene but since solving the equation in <a href="#solving-the-irradiance-question">solving the irradiance question</a> in a real-time application is infeasible we have to rely on an approximation. In this implementation we used something called a probe (diffuse probe, irradiance probe, IBL probe, e.t.c.), they capture the irradiance at a given point in the scene.<br>
+Ideally we would calculate the irradiance for a given point and it's normal in the scene but since solving the equation in <a href="#solving-the-irradiance-question">Solving the irradiance question</a> in a real-time application is infeasible we have to rely on an approximation. In my implementation I use something called a probe (diffuse probe, irradiance probe, IBL probe, light probe, e.t.c.), that captures the irradiance at a given point in the scene.<br>
 Luckily diffuse irradiance data depening on the density of placements doesn't vary that much spatially so generally these approximations return results that are plausible enough.
 
 Some options to consider when placing probes in the scene
@@ -88,7 +93,7 @@ When placing these probes keep in mind how they will be interpolated, by using t
 
 ## Implementation
 
-The implemenation of this requires some rewriting in pseudo code as it was fully created on a certain next gen hardware platform from a japanese company😉. With this in mind I hope there is still something to take away from reading this.
+The implemenation of this requires some rewriting in pseudo code as it was fully created on a Playstation 5&#174;. With this in mind I hope there is still something to take away from reading this.
 
 ### High-level overview
 
@@ -105,7 +110,7 @@ The high level overview of the implementation goes as follows:
 
 ### Reducing the irradiance memory print
 
-As discussed in the theoretical side of this article we use a 2nd order spherical harmonics cubemap representation. This reduced the memory footprint for the diffuse data to 9 3-component vectors. or in shader language.
+As alluded to in the theoretical side of this article we use 2nd order spherical harmonics for storing the irradiance[[6]](#source6). This reduces the memory footprint for diffuse data to 9 3-component vectors. or in shader language.
 ```C++
 struct SH9Irradiance
 {
@@ -150,6 +155,29 @@ SH9 GenSHCoefficients(float3 normal)
 
 Where SH9 is a struct containing 9 scalar coefficients.
 
+Retrieving the irradiance signal can then be computed as follows
+```C++
+float3 CalcSHIrradiance(float3 normal, SH9Irradiance irrCoeff)
+{
+	const float A0 = 3.141593f;
+	const float A1 = 2.094395f;
+	const float A2 = 0.785398f;
+
+	SH9 coefficients = GenSHCoefficients(normal);
+
+	return
+		irrCoeff.band0_0 * coefficients.band0_0 * A0 +
+		irrCoeff.band1_n1 * coefficients.band1_n1 * A1 +
+		irrCoeff.band1_0 * coefficients.band1_0 * A1 +
+		irrCoeff.band1_p1 * coefficients.band1_p1 * A1 +
+		irrCoeff.band2_n2 * coefficients.band2_n2 * A2 +
+		irrCoeff.band2_n1 * coefficients.band2_n1 * A2 +
+		irrCoeff.band2_0 * coefficients.band2_0 * A2 +
+		irrCoeff.band2_p1 * coefficients.band2_p1 * A2 +
+		irrCoeff.band2_p2 * coefficients.band2_p2 * A2;
+}
+```
+
 The encoding of irradiance signals into these harmonics will be displayed in the section [From position to irradiance probe](#from-position-to-irradiance-probe).
 
 ### Generating cubemaps
@@ -161,6 +189,10 @@ I assume the reader is knowledgeable in the basic of graphics programming and kn
 The pipeline for baking probes consist of a two step process:
 - Generate a cubemap
 - Use this cubemap to compute spherical harmonics
+
+As I showed in [Solving the irradiance question](#solving-the-irradiance-question) we can compute the irradiance integral for a cubemap by taking samples over a hemisphere for each pixel in the cubemap, We essentially do the same thing with spherical harmonics but we calculate the coefficients for different bands per pixel's normal and add these together weighted by the differential solid angle of the pixel. As the total weight should be 4&#960;[[7]](#source7)[[8]](#source8) we normalize the weight by dividing by _weightSum_ to make sure we apply a correct correction factor. 
+
+In a  shader language:
 
 ```C++
 [NumThreads(1, 1, 1)]
@@ -195,7 +227,7 @@ void main(uint3 DTid : SV_DISPATCH_THREAD_ID)
 		}
 	}
 
-	irrOut *= 4.0f * PI / weightSum;
+	irrOut *= (4.0f * PI) / weightSum;
 
 	srtinst.Probes[index].IrradianceCoefficients = irrOut;
 }
@@ -221,7 +253,7 @@ radiance += GetIrradiance(WSPosition, normal);
 
 ### Taking this a step further
 
-Alternative features that can be implemented to improve/enhance the algorihtm. Serving as inspiration to the reader as well as a list for myself to implement outside of what the 7 weeks of school work allowed me to do
+Alternative features that can be implemented to improve/enhance the algorithm. Serving as inspiration to the reader as well as a list for myself to implement outside of what the 7 weeks of school work allowed me to do
 - **Using a ray-tracer to get radiance values**<br>
 	Currently we generate a cubemap per probe and sample the radiance as a pixel in the texture. We could also spawn some 	rays per probe and use these radiance values to compute the harmonics.This process is very similair to what Nvidia 	uses in their real-time hardware accelerated ray-tracing  global illumination algorithm[[2]](#source2)
 
@@ -239,17 +271,28 @@ The implementation currently only supports diffuse irradiance data. A nice addit
 
 ## <a id="photoshop-blending"></a>Exposure correction explanation
 
-To be totally transparent about the cover image of this article. The given time for the project did not allow me to implement localized tone mapping. To be able to showcase an image with visible details in both the highlight and shadows I had to simulate the tone mapping through photoshop. All images used are showed below:
+To be totally transparent about the cover image of this article. The given time for the project did not allow me to implement localized tone mapping. To be able to showcase an image with visible details in both the highlight and shadows I had to simulate the tone mapping through photoshop by blending a high and low exposure image based on luminance values. All images used are showed below:
 
 |High exposure	|	Low exposure	|
 |---|---|
 |![](/Images/HighExposure.png)	| ![](/Images/LowExposure.png)	|
 
 ## Sources
-[1] <a id="source1" /> [Naughty dog at siggraph 2020](https://www.naughtydog.com/blog/naughty_dog_at_siggraph_2020) <br>
-[2] <a id="source2" /> [Nvidia rtxgi](https://developer.nvidia.com/rtx/ray-tracing/rtxgi) <br>
-[3] <a id="source3" /> [Real-time global illumination using precomputed light field probes](https://research.nvidia.com/publication/2017-02_real-time-global-illumination-using-precomputed-light-field-probes) <br>
-[4] <a id="source4" /> [Frostbite stochastic screen space recflections](https://www.ea.com/frostbite/news/stochastic-screen-space-reflections)<br>
+[1] <a id="source1" /> [Naughty dog at siggraph 2020](https://www.naughtydog.com/blog/naughty_dog_at_siggraph_2020) 
+<br>
+[2] <a id="source2" /> [Nvidia rtxgi](https://developer.nvidia.com/rtx/ray-tracing/rtxgi) 
+<br>
+[3] <a id="source3" /> [Morgan McGuire, Mike Mara, Derek Nowrouzezahrai, and David Luebke. 2017. Real-time global illumination using precomputed light field probes. In Proceedings of the 21st ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games (I3D '17). Association for Computing Machinery, New York, NY, USA, Article 2, 1–11. https://doi.org/10.1145/3023368.3023378](https://doi.org/10.1145/3023368.3023378) 
+<br>
+[4] <a id="source4" /> [Frostbite stochastic screen space recflections](https://www.ea.com/frostbite/news/stochastic-screen-space-reflections)
+<br>
 [5] <a id="source5"> [LearnOpengL diffuse irradiance](https://learnopengl.com/PBR/IBL/Diffuse-irradiance)
+<br>
+[6] <a id="source6" /> [Ravi Ramamoorthi and Pat Hanrahan. 2001. An efficient representation for irradiance environment maps. In Proceedings of the 28th annual conference on Computer graphics and interactive techniques (SIGGRAPH '01). Association for Computing Machinery, New York, NY, USA, 497–500. https://doi.org/10.1145/383259.383317](https://doi.org/10.1145/383259.383317)
+<br>
+[7] <a id="source7"> [Andrew Pham: Spherical Harmonics](https://andrew-pham.blog/2019/08/26/spherical-harmonics/)
+<br>
+[8] <a id="source8"> [Wikipedia: Solid Angle](https://en.wikipedia.org/wiki/Solid_angle)
+<br>
 
 <img src="/Images/Logo BUas_RGB.png" width="40%" />
