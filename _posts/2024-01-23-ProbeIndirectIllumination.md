@@ -134,7 +134,7 @@ For any given normal we can generate the coefficients for each order and band us
 ```C++
 SH9 GenSHCoefficients(float3 normal)
 {
-	srt::sh::SH9 result;
+	sh::SH9 result;
 
 	result.band0_0 = 0.282095f;
 
