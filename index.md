@@ -1,5 +1,5 @@
-Here you can say lots of fun things about your site.
+![](Images/ExposureCorrectedScene.png)
 
-Maybe say a some things about yourself.
+A little slice of my journey through programming and the graphics worlds
 
-Or maybe what you plan to blog about.
+Currently as part of my studies at Breda University of applied sciences (BUas)
