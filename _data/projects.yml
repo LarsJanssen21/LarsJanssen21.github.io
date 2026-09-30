@@ -6,33 +6,15 @@
 # Both are optional — omit a line entirely if it doesn't apply.
 # ------------------------------------------------------------------
 
-- title: "Octahedral Encoding & Depth-Based Probe Discarding"
+- title: "Indirect lighting through statically baked irradiance probes"
   description: >
-    Extended a diffuse irradiance probe system with octahedral depth encoding
-    to discard occluded probes and fix light leaking in indirect illumination.
+    Implemented a probe based indirect lighting scheme as part of a
+    individual school project.
   image: /Images/IBL_DiffuseIrradiance.png
-  tags: [Graphics, Rendering]
+  tags: [Graphics, Rendering, PS5]
   link:
   repo:
   writeup: /2025/12/31/OctahedralEncodingandDepthValues.html
-
-- title: "Image-Based Lighting Pipeline"
-  description: >
-    Implemented a full IBL pipeline including diffuse irradiance convolution,
-    a specular reflection mip-chain, and a precomputed BRDF LUT.
-  image: /Images/IBL_ReflectionMipchain.png
-  tags: [Graphics, Rendering]
-  link:
-  repo:
-
-- title: "HDR Exposure Correction"
-  description: >
-    Added exposure correction and tone mapping to a custom renderer to bring
-    high dynamic range scenes into a displayable range without losing detail.
-  image: /Images/ExposureCorrectedScene.png
-  tags: [Graphics]
-  link:
-  repo:
 
 # - title: "Your Next Project"
 #   description: >

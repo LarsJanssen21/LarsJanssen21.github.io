@@ -9,10 +9,6 @@ permalink: /
 <section class="about">
   <img src="/Images/ExposureCorrectedScene.png" alt="" class="about-image">
   <div class="about-text">
-    <!--
-      Edit this paragraph with a couple of sentences about yourself:
-      who you are, what you work on, and where you're headed.
-    -->
     <p>
       I'm Lars, a Creative Media and Game Technologies student at
       Breda University of Applied Sciences (BUas), with a background in
