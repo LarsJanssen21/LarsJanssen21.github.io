@@ -1,3 +1,7 @@
+---
+project: probe-ibl-pipeline
+---
+
 ## Octahedral encoding and Depth Values
 
 In this blog post I'll describe the process of extending the diffuse irradiance implementation in my renderer to account for depth based discarding. To solve the problem of light leaks in the current implementation

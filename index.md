@@ -7,13 +7,14 @@ permalink: /
 <link href="/css/override.css" rel="stylesheet" type="text/css">
 
 <section class="about">
-  <img src="/Images/ExposureCorrectedScene.png" alt="" class="about-image">
+  <img src="/Images/profile_picture.jpeg" alt="" class="about-image">
   <div class="about-text">
     <p>
       I'm Lars, a Creative Media and Game Technologies student at
-      Breda University of Applied Sciences (BUas), with a background in
-      graphics programming. I write about the graphics and
-      rendering work I do along the way. You can find those posts on the
+      Breda University of Applied Sciences (BUas), with a background starting off in
+      graphics programming. I'm currently exploring a bunch of different things in and around game development.
+      I write about what interests me in technology on here. Whether that's graphics and
+      rendering work or anything else I do along the way. You can find those posts on the
       <a href="{{ '/archive.html' | relative_url }}">Articles</a> page.
     </p>
   </div>
@@ -35,10 +36,23 @@ permalink: /
       </div>
       {% endif %}
       <p>{{ project.description }}</p>
+      {% assign related_posts = site.posts | where: "project", project.slug %}
+      {% if related_posts.size > 0 %}
+      <div class="project-card-writeups">
+        <p>Related articles:</p>
+        {% for post in related_posts %}
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
       <div class="project-card-links">
-        {% if project.writeup %}<a href="{{ project.writeup | relative_url }}">Write-up</a>{% endif %}
         {% if project.link %}<a href="{{ project.link }}">Demo</a>{% endif %}
-        {% if project.repo %}<a href="{{ project.repo }}">Code</a>{% endif %}
+        {% if project.repo %}
+          <a href="{{ project.repo }}">Code</a>
+        {% elsif project.code_note %}
+          <span class="project-code-note">{{ project.code_note }}</span>
+        {% endif %}
+        {% if project.date %} <p>{{project.date}}</p> {% endif %}
       </div>
     </div>
   </div>

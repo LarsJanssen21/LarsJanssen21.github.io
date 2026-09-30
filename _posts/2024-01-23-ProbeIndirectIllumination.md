@@ -1,4 +1,11 @@
+---
+project: probe-ibl-pipeline
+tags: [Graphics, Rendering, PS5]
+---
+
 ## Indirect lighting through irradiance probes
+
+*This articles was made as part of an assignment during my studies at BUas (Breda University of applied sciences)*
 
 <p align="center">
      <img src="/Images/ExposureCorrectedScene.png" alt="Exposure corrected final result" width="100%"><br>

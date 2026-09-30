@@ -6,15 +6,34 @@
 # Both are optional — omit a line entirely if it doesn't apply.
 # ------------------------------------------------------------------
 
-- title: "Indirect lighting through statically baked irradiance probes"
+- title: "Suck It Up"
+  slug: SuckItUp
   description: >
-    Implemented a probe based indirect lighting scheme as part of a
+    Suck It Up is an action game made in Unreal Engine. Your goal is to clear a planet from an alien critter manifestation
+  image: /Images/SuckItUpCover.jpg
+  tags: [Single-player, Team project, Unreal Engine]
+  date: July 2026
+
+- title: "Blightspire"
+  slug: Blightspire
+  description: >
+    A Boomer shooter built on a custom engine deployed on Steam as part of a six month third year project.
+  image: /Images/BlightspireCover.jpg
+  tags: [Single-player, Team project, Custom Engine]
+  link:
+  code: https://github.com/BredaUniversityGames/Y2024-25-PR-BB
+  date: July 2025
+
+- title: "Indirect lighting through statically baked irradiance probes"
+  slug: probe-ibl-pipeline
+  description: >
+    Implemented a probe based indirect lighting scheme as part of an
     individual school project.
-  image: /Images/IBL_DiffuseIrradiance.png
+  image: /Images/ExposureCorrectedScene.png
   tags: [Graphics, Rendering, PS5]
   link:
-  repo:
-  writeup: /2025/12/31/OctahedralEncodingandDepthValues.html
+  code_note: Code not available (NDA)
+  date: January 2024
 
 # - title: "Your Next Project"
 #   description: >
