@@ -1,0 +1,43 @@
+# ------------------------------------------------------------------
+# Projects shown on the homepage.
+# Add a new project by copying one block below and editing the values.
+# Leave "image" blank (or delete the line) if you don't have one yet.
+# "link" can point to a live demo, and "repo" to the GitHub repository.
+# Both are optional — omit a line entirely if it doesn't apply.
+# ------------------------------------------------------------------
+
+- title: "Octahedral Encoding & Depth-Based Probe Discarding"
+  description: >
+    Extended a diffuse irradiance probe system with octahedral depth encoding
+    to discard occluded probes and fix light leaking in indirect illumination.
+  image: /Images/IBL_DiffuseIrradiance.png
+  tags: [Graphics, Rendering]
+  link:
+  repo:
+  writeup: /2025/12/31/OctahedralEncodingandDepthValues.html
+
+- title: "Image-Based Lighting Pipeline"
+  description: >
+    Implemented a full IBL pipeline including diffuse irradiance convolution,
+    a specular reflection mip-chain, and a precomputed BRDF LUT.
+  image: /Images/IBL_ReflectionMipchain.png
+  tags: [Graphics, Rendering]
+  link:
+  repo:
+
+- title: "HDR Exposure Correction"
+  description: >
+    Added exposure correction and tone mapping to a custom renderer to bring
+    high dynamic range scenes into a displayable range without losing detail.
+  image: /Images/ExposureCorrectedScene.png
+  tags: [Graphics]
+  link:
+  repo:
+
+# - title: "Your Next Project"
+#   description: >
+#     A short, one- or two-sentence description of what it does and what you built.
+#   image: /Images/projects/your-image.png
+#   tags: [Tag1, Tag2]
+#   link: https://your-live-demo.example.com
+#   repo: https://github.com/LarsJanssen21/your-repo

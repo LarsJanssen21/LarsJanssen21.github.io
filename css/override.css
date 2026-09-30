@@ -2,44 +2,151 @@ hr {
   margin-top: 30px;
   margin-bottom: 20px;
 }
-
+ 
 /* Post navigation links */
 .post_navi {
   display: flex;
 }
-
+ 
 .post_navi-label {
   font-size: 0.8em;
   opacity: 0.5;
 }
-
+ 
 .post_navi .post_navi-item {
   padding: 0 2.2em;
   width: 50%;
   position: relative;
   color: inherit !important;
 }
-
+ 
 .post_navi .nav_prev {
   text-align: left;
 }
-
+ 
 .post_navi .nav_next {
   text-align: right;
 }
-
+ 
 .post_navi .nav_prev .post_navi-arrow {
   left: 0;
 }
-
+ 
 .post_navi .nav_next .post_navi-arrow {
   right: 0;
 }
-
+ 
 .post_navi .post_navi-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 2.5em;
   opacity: 0.3;
+}
+ 
+/* About section on the homepage */
+.about {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  margin-bottom: 2.5em;
+  flex-wrap: wrap;
+}
+ 
+.about-image {
+  width: 220px;
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+ 
+.about-text {
+  flex: 1;
+  min-width: 260px;
+}
+ 
+/* Project grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5em;
+  margin-top: 1.5em;
+}
+ 
+.project-card {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.15s ease;
+}
+ 
+.project-card:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+ 
+.project-card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+ 
+.project-card-body {
+  padding: 1em 1.2em 1.2em;
+}
+ 
+.project-card-body h3 {
+  margin: 0 0 0.4em;
+  font-size: 1.1em;
+}
+ 
+.project-card-body p {
+  margin: 0.5em 0;
+  font-size: 0.95em;
+}
+ 
+.project-card-tags {
+  margin-bottom: 0.4em;
+}
+ 
+.project-tag {
+  display: inline-block;
+  font-size: 0.75em;
+  opacity: 0.7;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  padding: 0.1em 0.7em;
+  margin: 0 0.3em 0.3em 0;
+}
+ 
+.project-card-links a {
+  margin-right: 1em;
+  font-size: 0.9em;
+}
+ 
+/* Articles page */
+.articles-list {
+  margin-top: 1em;
+}
+ 
+.article-entry {
+  padding: 0.9em 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+ 
+.article-date {
+  display: inline-block;
+  font-size: 0.85em;
+  opacity: 0.6;
+  min-width: 6.5em;
+}
+ 
+.article-title {
+  font-weight: 600;
+}
+ 
+.article-tags {
+  margin-top: 0.3em;
 }
