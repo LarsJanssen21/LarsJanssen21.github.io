@@ -11,7 +11,7 @@
   description: >
     For an individual project I created a plugin for Unreal Engine to interact with BLE (Bluetooth Low Energy) devices.
     Leveraging threads and static blueprint analysis throughout.
-  image: /Images/BLECover.png
+  image: /Images/BLECover.PNG
   tags: [Unreal Engine, OS APIs, Multithreading]
   date: October 2026
 
