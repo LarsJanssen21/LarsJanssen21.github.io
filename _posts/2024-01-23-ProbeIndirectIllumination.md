@@ -3,7 +3,7 @@ project: probe-ibl-pipeline
 tags: [Graphics, Rendering, PS5]
 ---
 
-## Indirect lighting through irradiance probes
+## Indirect lighting through irradiance probes: Theory and practice
 
 *This articles was made as part of an assignment during my studies at BUas (Breda University of applied sciences)*
 
@@ -14,7 +14,7 @@ tags: [Graphics, Rendering, PS5]
 
 ## Table of contents
 
-- [Indirect lighting through irradiance probes](#indirect-lighting-through-irradiance-probes)
+- [Indirect lighting through irradiance probes: Theory and practice](#indirect-lighting-through-irradiance-probes-theory-and-practice)
 - [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 		- [Why indirect illumination?](#why-indirect-illumination)

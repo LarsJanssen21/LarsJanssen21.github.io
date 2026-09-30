@@ -20,6 +20,9 @@ github_username: "LarsJanssen21"
 #########################################################################################
 theme: "minima"
 
+header_pages:
+  - archive.md
+
 rss: rss
 
 kramdown:

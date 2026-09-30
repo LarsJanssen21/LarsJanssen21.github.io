@@ -6,12 +6,21 @@
 # Both are optional — omit a line entirely if it doesn't apply.
 # ------------------------------------------------------------------
 
-- title: "Suck It Up"
+- title: "BLE for Unreal"
+  slug: UnrealBLE
+  description: >
+    For an individual project I created a plugin for Unreal Engine to interact with BLE (Bluetooth Low Energy) devices.
+    Leveraging threads and static blueprint analysis throughout.
+  image: /Images/BLECover.png
+  tags: [Unreal Engine, OS APIs, Multithreading]
+  date: October 2026
+
+- title: "Suck It Up!"
   slug: SuckItUp
   description: >
-    Suck It Up is an action game made in Unreal Engine. Your goal is to clear a planet from an alien critter manifestation
+    Suck It Up! is an action game made in Unreal Engine. Your goal is to clear a planet from an alien critter manifestation
   image: /Images/SuckItUpCover.jpg
-  tags: [Single-player, Team project, Unreal Engine]
+  tags: [Single-player game, Team project, Unreal Engine]
   date: July 2026
 
 - title: "Blightspire"
@@ -19,16 +28,15 @@
   description: >
     A Boomer shooter built on a custom engine deployed on Steam as part of a six month third year project.
   image: /Images/BlightspireCover.jpg
-  tags: [Single-player, Team project, Custom Engine]
+  tags: [Single-player game, Team project, Custom Engine]
   link:
   code: https://github.com/BredaUniversityGames/Y2024-25-PR-BB
   date: July 2025
 
-- title: "Indirect lighting through statically baked irradiance probes"
+- title: "Indirect lighting through probes"
   slug: probe-ibl-pipeline
   description: >
-    Implemented a probe based indirect lighting scheme as part of an
-    individual school project.
+    An indirect lighting scheme using statically baked probes. Implemented on a PS5 as part of a learning experience.
   image: /Images/ExposureCorrectedScene.png
   tags: [Graphics, Rendering, PS5]
   link:

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: plain
 title: Home
 permalink: /
 ---
@@ -25,11 +25,11 @@ permalink: /
 <div class="project-grid">
   {% for project in site.data.projects %}
   <div class="project-card">
+    <h3 class="project-card-title"><b>{{ project.title }}</b></h3>
     {% if project.image %}
     <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-card-image">
     {% endif %}
     <div class="project-card-body">
-      <h3>{{ project.title }}</h3>
       {% if project.tags %}
       <div class="project-card-tags">
         {% for tag in project.tags %}<span class="project-tag">{{ tag }}</span>{% endfor %}
@@ -52,8 +52,10 @@ permalink: /
         {% elsif project.code_note %}
           <span class="project-code-note">{{ project.code_note }}</span>
         {% endif %}
-        {% if project.date %} <p>{{project.date}}</p> {% endif %}
       </div>
+      {% if project.date %}  
+      <div class="project-card-date">{{project.date}}</div> 
+      {% endif %}
     </div>
   </div>
   {% endfor %}

@@ -95,10 +95,21 @@ hr {
 
 .project-card-body {
   padding: 1em 1.2em 1.2em;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.project-card-body h3 {
-  margin: 0 0 0.4em;
+.project-card-date {
+  margin-top: auto;
+  padding-top: 0.8em;
+  font-size: 0.8em;
+  opacity: 0.55;
+}
+
+.project-card-title {
+  margin: 0;
+  padding: 0.8em 1.2em 0.6em;
   font-size: 1.1em;
 }
 
