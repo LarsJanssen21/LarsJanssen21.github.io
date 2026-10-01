@@ -12,10 +12,24 @@ html, body {
 }
 
 /* Wrapper added by math-scale.js around each display equation, so its
-   scaled-down height can be set without affecting surrounding content */
+   scaled-down height can be set without affecting surrounding content.
+   text-align: center keeps the equation centered, matching MathJax's
+   normal look, whether or not it ends up needing to be scaled. */
 .mjx-scale-wrapper {
   width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Equations the JS has wrapped must render at their full natural width,
+   unclipped, so the transform below shrinks the WHOLE equation rather
+   than a portion of it already cropped to the container width.
+   inline-block + the wrapper's text-align:center keeps it centered.
+   This overrides the overflow-x/max-width fallback rule just below. */
+.mjx-scale-wrapper mjx-container {
+  display: inline-block !important;
   overflow: visible;
+  max-width: none;
 }
 
 /* Fallback in case an equation isn't caught by the JS scaling (e.g. JS
