@@ -15,6 +15,7 @@
   contributions: [WinRT implementation, External threads, Static blueprint analysis]
   duration: 2 months
   tags: [Unreal Engine, OS APIs, Multithreading, BLE Protocol]
+  repo: https://github.com/LarsJanssen21/BLEForUnreal.git
   date: October 2026
 
 - title: "Suck It Up!"
@@ -23,6 +24,7 @@
     Suck It Up! is an action game made in Unreal Engine. Your goal is to clear a planet from an alien critter manifestation
   image: /Images/SuckItUpCover.jpg
   contributions: [Procedural locomotion, Editor tools, Gameplay behavior tools]
+  team: 7 Programmers, 8 Designers and 10 Visual artists
   duration: 6 months
   tags: [Single-player game, Team project, Unreal Engine]
   date: July 2026
@@ -43,7 +45,7 @@
 - title: "Blossom"
   slug: blossom
   description: >
-    A game about a bee that has to restore nature.
+    A game about a bee that has to restore nature to it's equilibrium
   image: /Images/BlossomCover.png
   contributions: [PS5 Porting, Graphics pipeline]
   team: 8 programmers, 3 visual artists and 1 designer

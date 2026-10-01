@@ -1,5 +1,5 @@
 ---
-project: UnrealBLE
+project: unreal-ble
 tags: [Threads, Unreal Engine, OS Threads]
 ---
 

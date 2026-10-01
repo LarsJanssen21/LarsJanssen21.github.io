@@ -56,16 +56,17 @@ permalink: /
       {% assign related_posts = site.posts | where: "project", project.slug %}
       {% if related_posts.size > 0 %}
       <div class="project-card-writeups">
-        <p>Related articles:</p>
+        <p><b>Related articles:</b>
         {% for post in related_posts %}
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a> {% unless forloop.last %} | {% endunless %}
         {% endfor %}
+        </p>
       </div>
       {% endif %}
       <div class="project-card-links">
         {% if project.link %}<a href="{{ project.link }}">Demo</a>{% endif %}
         {% if project.repo %}
-          <a href="{{ project.repo }}" target="_blank">Code repository</a>
+          <a href="{{ project.repo }}">Code repository</a>
         {% elsif project.code_note %}
           <span class="project-code-note">{{ project.code_note }}</span>
         {% endif %}
