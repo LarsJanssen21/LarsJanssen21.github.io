@@ -30,6 +30,7 @@ html, body {
   display: inline-block !important;
   overflow: visible;
   max-width: none;
+  margin: 0 !important;
 }
 
 /* Fallback in case an equation isn't caught by the JS scaling (e.g. JS

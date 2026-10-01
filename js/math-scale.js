@@ -35,6 +35,7 @@
 
       // Reset before measuring, so we're never scaling an already-scaled value
       mjx.style.transform = '';
+      mjx.style.margin = '0';
       wrapper.style.height = '';
 
       var naturalWidth = mjx.scrollWidth;
@@ -42,7 +43,7 @@
 
       if (naturalWidth > availableWidth && naturalWidth > 0) {
         var scale = availableWidth / naturalWidth;
-        mjx.style.transformOrigin = 'center top';
+        mjx.style.transformOrigin = 'top left';
         mjx.style.transform = 'scale(' + scale + ')';
         // The transform doesn't shrink the box's own layout height,
         // so set it explicitly to avoid leftover blank space below.
