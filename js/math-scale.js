@@ -5,10 +5,24 @@
 (function () {
   function wrapEquations() {
     document.querySelectorAll('mjx-container[display="true"]').forEach(function (mjx) {
-      if (!mjx.parentElement.classList.contains('mjx-scale-wrapper')) {
-        var wrapper = document.createElement('div');
-        wrapper.className = 'mjx-scale-wrapper';
-        mjx.parentNode.insertBefore(wrapper, mjx);
+      if (mjx.parentElement.classList.contains('mjx-scale-wrapper')) return; // already wrapped
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mjx-scale-wrapper';
+      var parent = mjx.parentElement;
+
+      // kramdown wraps a standalone $$...$$ block in its own <p>, and
+      // MathJax replaces that text in place, so the <p> usually ends up
+      // containing nothing but the equation. Replace that <p> with our
+      // wrapper instead of nesting a block-level div inside it — a <p>
+      // can't validly contain a block element, and some mobile browsers
+      // compute the nested wrapper's width incorrectly as a result.
+      if (parent.tagName === 'P' && parent.childNodes.length === 1) {
+        parent.parentNode.insertBefore(wrapper, parent);
+        wrapper.appendChild(mjx);
+        parent.parentNode.removeChild(parent);
+      } else {
+        parent.insertBefore(wrapper, mjx);
         wrapper.appendChild(mjx);
       }
     });
