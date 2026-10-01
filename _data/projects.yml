@@ -13,6 +13,7 @@
     Leveraging threads and static blueprint analysis throughout.
   image: /Images/BLECover.PNG
   contributions: [WinRT implementation, External threads, Static blueprint analysis]
+  team: Solo
   duration: 2 months
   tags: [Unreal Engine, OS APIs, Multithreading, BLE Protocol]
   repo: https://github.com/LarsJanssen21/BLEForUnreal.git
