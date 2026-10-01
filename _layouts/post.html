@@ -2,9 +2,9 @@
 layout: default
 ---
 <link href="/css/override.css" rel="stylesheet" type="text/css">
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" type="text/javascript"></script>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
+ 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
     <p class="post-meta">
@@ -17,15 +17,15 @@ layout: default
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ author }}</span></span>
       {%- endif -%}</p>
   </header>
-
+ 
   <div class="share-links">
     {% include sharelinks.html %}
   </div>
-
+ 
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
     {% include navlinks.html %}
   </div>
-
+ 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

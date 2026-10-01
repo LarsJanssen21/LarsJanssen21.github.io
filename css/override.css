@@ -3,6 +3,24 @@ hr {
   margin-bottom: 20px;
 }
 
+/* Keep wide rendered math from overflowing the page width.
+   mjx-container is MathJax 3's output element for each equation. */
+mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  display: block !important;
+}
+
+/* General safety net: anything else unexpectedly wide (long code blocks,
+   tables) scrolls horizontally in its own box instead of breaking layout */
+.post-content pre,
+.post-content table {
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
 /* Post navigation links */
 .post_navi {
   display: flex;
@@ -111,6 +129,12 @@ hr {
   margin: 0;
   padding: 0.8em 1.2em 0.6em;
   font-size: 1.2em;
+  line-height: 1.3em;
+  height: calc(1.3em * 2 + 0.8em + 0.6em); /* fixed: 2 lines + top/bottom padding */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-card-body p {
