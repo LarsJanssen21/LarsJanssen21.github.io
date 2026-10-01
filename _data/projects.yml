@@ -72,7 +72,7 @@
     A year 1 project, The assignment was a 2D CPU Raytracer. I extended the project to accelarate 
     results by using a custom BVH on the GPU through compute work. 
   image: /Images/2DRayTracerCover.png
-  contributions: [GPU, Custom BVH | Vulkan]
+  contributions: [GPU, Custom BVH, Vulkan, Temporal Anti-Aliasing]
   team: Solo
   duration: 2 months
   tags: [Graphics, Rendering, Custom GPU BVH]
