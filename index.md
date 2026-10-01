@@ -27,7 +27,10 @@ permalink: /
   <div class="project-card">
     <h3 class="project-card-title"><b>{{ project.title }}</b></h3>
     {% if project.image %}
-    <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-card-image">
+    <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-card-image" >
+    {% endif %}
+    {% if project.video %}
+    <video src="{{project.video | relative_url}}" alt="{{project.title}}" class="project-card-image" autoplay muted loop></video>
     {% endif %}
     <div class="project-card-body">
       {% if project.tags %}
@@ -36,6 +39,20 @@ permalink: /
       </div>
       {% endif %}
       <p>{{ project.description }}</p>
+      <p><b>Duration: </b> {{project.duration}}</p>
+      {% if project.contributions %}
+      <p>
+        <b>Contributions: </b> 
+        {% for contribution in project.contributions %}
+          {{contribution}} {% unless forloop.last %} | {% endunless %}
+        {% endfor %}
+      </p>
+      {% endif %}
+      {% if project.team %}
+      <p>
+        <b>Team: </b> {{ project.team }}
+      </p>
+      {% endif %}
       {% assign related_posts = site.posts | where: "project", project.slug %}
       {% if related_posts.size > 0 %}
       <div class="project-card-writeups">
@@ -48,7 +65,7 @@ permalink: /
       <div class="project-card-links">
         {% if project.link %}<a href="{{ project.link }}">Demo</a>{% endif %}
         {% if project.repo %}
-          <a href="{{ project.repo }}">Code</a>
+          <a href="{{ project.repo }}" target="_blank">Code repository</a>
         {% elsif project.code_note %}
           <span class="project-code-note">{{ project.code_note }}</span>
         {% endif %}

@@ -7,41 +7,90 @@
 # ------------------------------------------------------------------
 
 - title: "BLE for Unreal"
-  slug: UnrealBLE
+  slug: unreal-ble
   description: >
     For an individual project I created a plugin for Unreal Engine to interact with BLE (Bluetooth Low Energy) devices.
     Leveraging threads and static blueprint analysis throughout.
   image: /Images/BLECover.PNG
-  tags: [Unreal Engine, OS APIs, Multithreading]
+  contributions: [WinRT implementation, External threads, Static blueprint analysis]
+  duration: 2 months
+  tags: [Unreal Engine, OS APIs, Multithreading, BLE Protocol]
   date: October 2026
 
 - title: "Suck It Up!"
-  slug: SuckItUp
+  slug: suck-it-up
   description: >
     Suck It Up! is an action game made in Unreal Engine. Your goal is to clear a planet from an alien critter manifestation
   image: /Images/SuckItUpCover.jpg
+  contributions: [Procedural locomotion, Editor tools, Gameplay behavior tools]
+  duration: 6 months
   tags: [Single-player game, Team project, Unreal Engine]
   date: July 2026
 
 - title: "Blightspire"
-  slug: Blightspire
+  slug: blightspire
   description: >
     A Boomer shooter built on a custom engine deployed on Steam as part of a six month third year project.
   image: /Images/BlightspireCover.jpg
+  contributions: [Pathfinding, Level collision, Scripting VM, Art assets]
+  team: 9 programmers & 1 designer
+  duration: 6 months
   tags: [Single-player game, Team project, Custom Engine]
   link:
-  code: https://github.com/BredaUniversityGames/Y2024-25-PR-BB
+  repo: https://github.com/BredaUniversityGames/Y2024-25-PR-BB
   date: July 2025
+
+- title: "Blossom"
+  slug: blossom
+  description: >
+    A game about a bee that has to restore nature.
+  image: /Images/BlossomCover.png
+  contributions: [PS5 Porting, Graphics pipeline]
+  team: 8 programmers, 3 visual artists and 1 designer
+  duration: 3 months
+  tags: [Single-player game, Team project, Custom Engine]
+  link:
+  date: July 2024
 
 - title: "Indirect lighting through probes"
   slug: probe-ibl-pipeline
   description: >
-    An indirect lighting scheme using statically baked probes. Implemented on a PS5 as part of a learning experience.
+    An indirect lighting scheme using statically baked probes as part of a year 2 specialization project.
+    Implemented on a PS5.
   image: /Images/ExposureCorrectedScene.png
+  contributions: [PS5 Graphics API, Static irradiance integration pipeline]
+  team: Solo
+  duration: 2 months
   tags: [Graphics, Rendering, PS5]
   link:
   code_note: Code not available (NDA)
   date: January 2024
+
+- title: "2D GPU Accelerated-Raytracing"
+  slug: 2d-gpu-raytracing
+  description: >
+    A year 1 project, The assignment was a 2D CPU Raytracer. I extended the project to accelarate 
+    results by using a custom BVH on the GPU through compute work. 
+  image: /Images/2DRayTracerCover.png
+  contributions: [GPU, Custom BVH | Vulkan]
+  team: Solo
+  duration: 2 months
+  tags: [Graphics, Rendering, Custom GPU BVH]
+  link:
+  date: April 2023
+
+- title: "3D RTS"
+  slug: 3d-rts
+  description: >
+    A year 1 project that had us extending a 2D RTS game to 3D on a Raspberry pi. 
+    I wanted to challenge myself by creating a cross platform application for the first time: Linux and Windows
+  video: /Images/TankRTSCover.mp4
+  contributions: [Cross platform backend handling, OpenGL, OpenGLES]
+  team: Solo
+  duration: 2 months
+  tags: [Windows, Linux, Raspberyy]
+  link:
+  date: April 2023
 
 # - title: "Your Next Project"
 #   description: >
